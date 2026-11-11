@@ -39,11 +39,11 @@ cp .env.example .env
 
 Populate the required credentials in `.env`:
 ```ini
-# Firebase Authentication (from Firebase Console > Project Settings)
+# Firebase Authentication
 FIREBASE_PROJECT_ID=your-firebase-project-id
 FIREBASE_API_KEY=your-firebase-web-api-key
 
-# Ollama server base URL (e.g. Pinggy tunnel URL from Lab 4 or local server)
+# Ollama server base URL
 OLLAMA_BASE_URL=http://localhost:11434
 
 # Model configurations
@@ -54,8 +54,6 @@ CHAT_MODEL=qwen3:4b
 TOP_K=3
 SIMILARITY_THRESHOLD=0.25
 ```
-
-> **Security Note:** Never commit `.env` to GitHub (it is excluded via `.gitignore`).
 
 ### 3. Run the Streamlit Application
 ```bash
@@ -89,7 +87,7 @@ The evaluation table below demonstrates 6 representative test questions (3 direc
   - Retained fields: `id`, `title`, `category`, `tags`, `text`, `source`.
   - **Rationale:**
     - `id`, `title`, `text`: Provide sufficient semantic context for vector retrieval and grounded generation.
-    - `category`, `tags`: Enable structured categorization and prepare foundational metadata for recommendation filtering in Assignment 04 (RAG-Rec).
+    - `category`, `tags`: Enable structured categorization and prepare foundational metadata for recommendation filtering in the RAG-Rec extension.
     - Unstructured layout artifacts (HTML tags, raw image URLs) were omitted to preserve context window capacity and accelerate embedding computation.
 
 ### 2. Decomposition
@@ -115,13 +113,13 @@ The application decomposes into 6 sequential sub-problems:
 - **Box 6 (Display):** In: Response text + Scores -> Out: Streamlit chat interface + expandable score inspection.
 
 ### 3. Pattern Recognition
-- **Reuse from Labs 3 & 4:**
-  - Client-side REST authentication with Firebase Auth (Lab 3).
-  - Model embedding and generation via Ollama HTTP endpoints (Lab 4).
+- **Architectural Components & Modularity:**
+  - Client-side REST authentication with Firebase Auth.
+  - Model embedding and generation via Ollama HTTP endpoints.
 - **Core Pattern:** The classic **Filter -> Score -> Top-K** workflow:
   - Compute angle similarity between the query vector and document vectors (Cosine Similarity).
   - Rank in descending order and select top $K$ items.
-- **Application in RAG-Rec (Assignment 4):**
+- **Application in Travel Recommendations (RAG-Rec):**
   - This pattern will extend to user preferences: combining metadata filtering (by `category` or `tags`) with vector similarity scoring to recommend travel itineraries.
 
 ### 4. Algorithm Design
