@@ -1,122 +1,122 @@
 [
   {
     "id": "G01",
-    "title": "Dinh Độc Lập (Hội trường Thống Nhất)",
+    "title": "Independence Palace (Reunification Convention Hall)",
     "category": "historical_site",
-    "tags": ["lịch sử", "kiến trúc", "quận 1", "di tích"],
-    "text": "Dinh Độc Lập tọa lạc tại 135 Nam Kỳ Khởi Nghĩa, Phường Bến Thành, Quận 1. Nơi đây từng là nơi ở và làm việc của Tổng thống Việt Nam Cộng hòa trước năm 1975. Dinh mở cửa đón khách tham quan hàng ngày từ 8:00 đến 16:30. Giá vé tham quan tòa nhà chính là 40.000 VNĐ đối với người lớn và 20.000 VNĐ đối với sinh viên. Khách có thể thuê hướng dẫn viên hoặc thiết bị thuyết minh tự động bằng nhiều thứ tiếng.",
-    "source": "Lumen Travel Guide TP.HCM - Cẩm nang di tích lịch sử"
+    "tags": ["history", "architecture", "district_1", "landmark"],
+    "text": "Independence Palace is located at 135 Nam Ky Khoi Nghia Street, Ben Thanh Ward, District 1. It served as the home and workplace of the President of South Vietnam before 1975. The palace is open daily to visitors from 8:00 AM to 4:30 PM. General admission tickets for the main building are 40,000 VND for adults and 20,000 VND for students. Guided tours and multilingual automated audio guides are available on site.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Historical Landmarks"
   },
   {
     "id": "G02",
-    "title": "Chợ Bến Thành",
+    "title": "Ben Thanh Market",
     "category": "market",
-    "tags": ["mua sắm", "ẩm thực", "quận 1", "chợ truyền thống"],
-    "text": "Chợ Bến Thành nằm tại trung tâm Quận 1 với 4 cửa Đông, Tây, Nam, Bắc nhìn ra các trục đường lớn. Cửa Nam với tháp đồng hồ 3 mặt là biểu tượng đặc trưng của Sài Gòn. Chợ hoạt động từ 6:00 sáng đến khoảng 18:00 chiều với các sạp bán đồ lưu niệm, vải vóc, cà phê và đặc sản ba miền; sau 18:00 khu vực hai bên hông chợ chuyển thành chợ đêm sầm uất. Du khách nên trả giá khi mua đồ lưu niệm hoặc đồ khô.",
-    "source": "Lumen Travel Guide TP.HCM - Mua sắm và Ẩm thực"
+    "tags": ["shopping", "street_food", "district_1", "traditional_market"],
+    "text": "Ben Thanh Market is situated in central District 1 with four main gates facing major streets. The South Gate, featuring a three-sided clock tower, is an iconic symbol of Saigon. The market operates daily from 6:00 AM to 6:00 PM with stalls selling souvenirs, fabrics, local coffee, and Vietnamese regional specialties. After 6:00 PM, the side streets turn into a bustling night market. Bargaining is recommended when shopping for dry goods and souvenirs.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Shopping and Dining"
   },
   {
     "id": "G03",
-    "title": "Nhà thờ Đức Bà Sài Gòn",
+    "title": "Notre-Dame Cathedral Basilica of Saigon",
     "category": "religious",
-    "tags": ["tôn giáo", "kiến trúc pháp", "quận 1", "check-in"],
-    "text": "Nhà thờ Chính tòa Đức Bà Sài Gòn nằm tại Công xã Paris, Bến Nghé, Quận 1. Công trình mang phong cách kiến trúc Roman pha trộn Gothic tuyệt đẹp với toàn bộ gạch ngói xây dựng được nhập trực tiếp từ Marseille (Pháp). Hiện nay nhà thờ đang trong quá trình đại trùng tu nên du khách chỉ có thể tham quan và chụp hình từ khuôn viên bên ngoài, không mất phí vào cổng.",
-    "source": "Lumen Travel Guide TP.HCM - Di sản kiến trúc"
+    "tags": ["religion", "french_architecture", "district_1", "sightseeing"],
+    "text": "Notre-Dame Cathedral Basilica is located at Paris Square (Cong xa Paris), Ben Nghe Ward, District 1. Built in the late 19th century, the cathedral combines Romanesque and Gothic architectural styles, with all exterior red bricks imported directly from Marseille, France. The cathedral is currently undergoing major restoration, so visitors can only admire and photograph the exterior grounds free of charge.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Architectural Heritage"
   },
   {
     "id": "G04",
-    "title": "Bưu điện Trung tâm Sài Gòn",
+    "title": "Saigon Central Post Office",
     "category": "historical_site",
-    "tags": ["kiến trúc cổ", "quận 1", "bưu điện", "check-in"],
-    "text": "Nằm ngay cạnh Nhà thờ Đức Bà tại số 2 Công xã Paris, Bưu điện Trung tâm Sài Gòn được xây dựng vào cuối thế kỷ 19 theo đồ án của kiến trúc sư người Pháp Villedieu và Foulhoux. Công trình nổi bật với mái vòm cong lớn, sàn gạch hoa cổ điển và hai bản đồ lịch sử hai bên tường sảnh chính. Bưu điện mở cửa miễn phí từ 7:30 đến 18:00 các ngày trong tuần và vẫn hoạt động gửi thư, bán bưu thiếp lưu niệm bình thường.",
-    "source": "Lumen Travel Guide TP.HCM - Di sản kiến trúc"
+    "tags": ["vintage_architecture", "district_1", "post_office", "sightseeing"],
+    "text": "Located right next to Notre-Dame Cathedral at 2 Paris Square, the Saigon Central Post Office was designed by French architects Auguste Henri Villedieu and Alfred Foulhoux in the late 19th century. The building features grand arched vaults, classic tiled flooring, and historic painted wall maps. Admission is free, and it is open on weekdays and Saturdays from 7:30 AM to 6:00 PM, and Sundays from 8:00 AM to 5:00 PM, offering active postal services and souvenir postcards.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Architectural Heritage"
   },
   {
     "id": "G05",
-    "title": "Bảo tàng Chứng tích Chiến tranh",
+    "title": "War Remnants Museum",
     "category": "museum",
-    "tags": ["bảo tàng", "lịch sử", "quận 3", "chiến tranh"],
-    "text": "Tọa lạc tại số 28 Võ Văn Tần, Phường Võ Thị Sáu, Quận 3, đây là một trong những bảo tàng thu hút đông đảo du khách quốc tế nhất tại Việt Nam. Bảo tàng trưng bày nhiều hình ảnh, hiện vật chân thực, máy bay, xe tăng và tư liệu về cuộc chiến tranh Việt Nam cùng hậu quả chất độc da cam. Giờ mở cửa từ 7:30 đến 17:30 mỗi ngày. Giá vé vào cổng là 40.000 VNĐ/người.",
-    "source": "Lumen Travel Guide TP.HCM - Bảo tàng và Lịch sử"
+    "tags": ["museum", "history", "district_3", "war_history"],
+    "text": "Located at 28 Vo Van Tan Street, Vo Thi Sau Ward, District 3, this is one of the most visited museums in Vietnam. It houses extensive exhibits of authentic photographs, military aircraft, tanks, weapons, and documentary evidence detailing the Vietnam War and the humanitarian impact of Agent Orange. The museum is open daily from 7:30 AM to 5:30 PM. Admission ticket is 40,000 VND per person.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Museums and History"
   },
   {
     "id": "G06",
-    "title": "Phố đi bộ Nguyễn Huệ",
+    "title": "Nguyen Hue Walking Street",
     "category": "entertainment",
-    "tags": ["phố đi bộ", "vui chơi", "quận 1", "về đêm"],
-    "text": "Phố đi bộ Nguyễn Huệ trải dài từ trước trụ sở UBND TP.HCM đến bến Bạch Đằng, Quận 1. Tuyến phố lát đá granite toàn bộ, cấm xe cộ lưu thông vào tối Thứ Bảy và Chủ Nhật (từ 18:00 đến 23:00) để phục vụ người dân đi dạo và các hoạt động nghệ thuật đường phố. Xung quanh phố có nhiều quán cà phê chung cư 42 Nguyễn Huệ, quán trà sữa và biểu diễn nhạc sống sôi động.",
-    "source": "Lumen Travel Guide TP.HCM - Giải trí và Đời sống đô thị"
+    "tags": ["promenade", "nightlife", "district_1", "outdoor"],
+    "text": "Nguyen Hue Walking Street extends from the Ho Chi Minh City People's Committee Building to Bach Dang Wharf in District 1. Paved entirely with granite, the street is closed to motorized vehicles on Saturday and Sunday evenings from 6:00 PM to 11:00 PM for pedestrians and street performances. Visitors can explore the trendy cafe apartments at 42 Nguyen Hue, tea shops, and vibrant open-air music shows.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Entertainment and Urban Life"
   },
   {
     "id": "G07",
-    "title": "Thảo Cầm Viên Sài Gòn",
+    "title": "Saigon Zoo and Botanical Gardens",
     "category": "park",
-    "tags": ["vườn thú", "cây xanh", "quận 1", "gia đình"],
-    "text": "Tọa lạc tại số 2 Nguyễn Bỉnh Khiêm, Phường Bến Nghé, Quận 1, Thảo Cầm Viên được xây dựng từ năm 1864 và là một trong những vườn thú lâu đời nhất trên thế giới. Nơi đây nuôi dưỡng hàng trăm loài động vật quý hiếm cùng hệ thực vật cổ thụ rợp bóng mát. Mở cửa hàng ngày từ 7:00 đến 17:30. Giá vé là 60.000 VNĐ cho người cao từ 1m3 trở lên, 40.000 VNĐ cho trẻ em từ 1m đến 1m3, miễn phí cho trẻ dưới 1m.",
-    "source": "Lumen Travel Guide TP.HCM - Điểm đến thiên nhiên"
+    "tags": ["zoo", "botanical_garden", "district_1", "family"],
+    "text": "Established in 1864 at 2 Nguyen Binh Khiem Street, Ben Nghe Ward, District 1, the Saigon Zoo and Botanical Gardens is one of the oldest zoos in the world. It is home to hundreds of rare animal species and a lush canopy of heritage trees. Opening hours are daily from 7:00 AM to 5:30 PM. Ticket prices are 60,000 VND for visitors 1.3 meters and above, 40,000 VND for children between 1.0 and 1.3 meters, and free for children under 1.0 meter.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Nature and Parks"
   },
   {
     "id": "G08",
-    "title": "Địa đạo Củ Chi",
+    "title": "Cu Chi Tunnels",
     "category": "historical_site",
-    "tags": ["lịch sử kháng chiến", "củ chi", "dã ngoại", "quân sự"],
-    "text": "Địa đạo Củ Chi cách trung tâm TP.HCM khoảng 70km về phía Tây Bắc, gồm 2 khu vực mở cửa tham quan chính là Bến Dược và Bến Đình. Hệ thống địa đạo độc đáo chìm trong lòng đất dài hơn 250km với các phòng họp, bệnh xá, hầm chỉ huy trong chiến tranh. Giờ tham quan từ 7:00 đến 17:00. Giá vé tham quan di tích khoảng 35.000 VNĐ với khách nội địa và 125.000 VNĐ với khách quốc tế (chưa bao gồm phí dịch vụ bắn súng sơn/đạn thật).",
-    "source": "Lumen Travel Guide TP.HCM - Di tích lịch sử ngoại thành"
+    "tags": ["military_history", "cu_chi", "day_trip", "underground"],
+    "text": "The Cu Chi Tunnels are located approximately 70 kilometers northwest of central Ho Chi Minh City, with two main public visiting sectors at Ben Duoc and Ben Dinh. This legendary underground network spans over 250 kilometers of interconnected tunnels, command bunkers, living quarters, and field hospitals used during the war. Open daily from 7:00 AM to 5:00 PM. Admission is approximately 35,000 VND for domestic visitors and 125,000 VND for international visitors.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Historical Landmarks"
   },
   {
     "id": "G09",
-    "title": "Chùa Bà Thiên Hậu (Chợ Lớn)",
+    "title": "Ba Thien Hau Pagoda (Chinatown - Cho Lon)",
     "category": "religious",
-    "tags": ["văn hóa hoa", "quận 5", "tâm linh", "chùa"],
-    "text": "Chùa Bà Thiên Hậu (Tuệ Thành Hội Quán) tọa lạc tại số 710 đường Nguyễn Trãi, Phường 11, Quận 5. Đây là ngôi chùa cổ do cộng đồng người Hoa gốc Tuệ Thành xây dựng vào thế kỷ 18 để thờ phụng Thiên Hậu Thánh Mẫu. Điểm nhấn là kiến trúc mái ngói phù điêu gốm tinh xảo, nhang vòng treo lơ lửng trên không gian tiền điện và khói hương trầm mặc. Chùa mở cửa đón khách chiêm bái tự do từ 6:00 đến 17:00, không thu phí vào cổng.",
-    "source": "Lumen Travel Guide TP.HCM - Văn hóa và Tâm linh"
+    "tags": ["chinese_culture", "district_5", "spiritual", "temple"],
+    "text": "Ba Thien Hau Pagoda (Tue Thanh Assembly Hall) is located at 710 Nguyen Trai Street, Ward 11, District 5. Established in the 18th century by the Cantonese Chinese community in Saigon, the pagoda is dedicated to Thien Hau, Goddess of the Sea. Notable features include intricate porcelain dioramas on the roof, large hanging spiral incense coils, and sacred historic altars. The temple is open daily from 6:00 AM to 5:00 PM with free entrance.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Culture and Spirituality"
   },
   {
     "id": "G10",
-    "title": "Landmark 81 & Công viên Vinhomes Central Park",
+    "title": "Landmark 81 and Vinhomes Central Park",
     "category": "entertainment",
-    "tags": ["tòa nhà cao nhất", "bình thạnh", "mua sắm", "ngắm cảnh"],
-    "text": "Tòa tháp Landmark 81 nằm tại 720A Điện Biên Phủ, Phường 22, Quận Bình Thạnh, giữ kỷ lục tòa nhà cao nhất Việt Nam. Khu trung tâm thương mại Vincom Center mở cửa tự do từ 10:00 đến 22:00. Đài quan sát SkyView ở tầng 79-81 mở cửa từ 8:30 đến 22:00 với giá vé người lớn khoảng 420.000 VNĐ/vé thường. Liền kề tòa nhà là công viên ven sông Central Park rộng 14ha với cầu đi bộ và cảnh quan xanh mát lý tưởng để đi dạo.",
-    "source": "Lumen Travel Guide TP.HCM - Điểm đến hiện đại"
+    "tags": ["skyscraper", "binh_thanh", "shopping", "scenic_view"],
+    "text": "Landmark 81 is located at 720A Dien Bien Phu Street, Ward 22, Binh Thanh District, and stands as the tallest skyscraper in Vietnam. The Vincom Center shopping mall is open freely from 10:00 AM to 10:00 PM. The SkyView Observation Deck on floors 79 to 81 operates from 8:30 AM to 10:00 PM with standard adult tickets priced at approximately 420,000 VND. Adjacent to the tower is the 14-hectare riverside Central Park with pedestrian bridges and expansive green spaces.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Modern Landmarks"
   },
   {
     "id": "G11",
-    "title": "Phố đi bộ Bùi Viện (Phố Tây Sài Gòn)",
+    "title": "Bui Vien Walking Street",
     "category": "entertainment",
-    "tags": ["phố tây", "về đêm", "bar", "ẩm thực đường phố", "quận 1"],
-    "text": "Nằm trên trục đường Bùi Viện, Đề Thám và Phạm Ngũ Lão thuộc Quận 1, khu phố Tây Bùi Viện là tâm điểm giải trí về đêm sôi động bậc nhất thành phố. Tuyến phố trở thành phố đi bộ cấm xe từ 19:00 đến 2:00 sáng hôm sau vào hai ngày cuối tuần. Khách du lịch có thể thưởng thức bia tươi vỉa hè giá bình dân, nghe nhạc sôi động tại các quán pub, bar ngoài trời và giao lưu văn hóa quốc tế.",
-    "source": "Lumen Travel Guide TP.HCM - Cuộc sống về đêm"
+    "tags": ["backpacker_street", "nightlife", "bars", "district_1"],
+    "text": "Centered along Bui Vien, De Tham, and Pham Ngu Lao streets in District 1, Bui Vien is famous as Saigon's premier nightlife hub. The street turns pedestrian-only from 7:00 PM to 2:00 AM on Friday, Saturday, and Sunday nights. Visitors can enjoy chilled local draft beers, street snacks, outdoor music lounges, and an energetic multicultural crowd.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Nightlife and Entertainment"
   },
   {
     "id": "G12",
-    "title": "Bảo tàng Mỹ thuật Thành phố Hồ Chí Minh",
+    "title": "Ho Chi Minh City Museum of Fine Arts",
     "category": "museum",
-    "tags": ["nghệ thuật", "hội họa", "kiến trúc", "quận 1"],
-    "text": "Bảo tàng nằm tại số 97A Phó Đức Chính, Phường Nguyễn Thái Bình, Quận 1, nguyên là tư dinh của thương gia Hứa Bổn Hòa (Chú Hỏa). Tòa dinh thự màu vàng nổi bật với sự kết hợp hài hòa giữa kiến trúc Art Deco phương Tây và phong cách Á Đông truyền thống, sở hữu thang máy cổ nhất Sài Gòn. Mở cửa từ 8:00 đến 17:00 tất cả các ngày. Giá vé tham quan là 30.000 VNĐ đối với người lớn và 15.000 VNĐ cho sinh viên, học sinh.",
-    "source": "Lumen Travel Guide TP.HCM - Bảo tàng và Nghệ thuật"
+    "tags": ["art", "fine_arts", "architecture", "district_1"],
+    "text": "Located at 97A Pho Duc Chinh Street, Nguyen Thai Binh Ward, District 1, this museum occupies the former mansion of merchant Hui Bon Hoa. The yellow mansion harmoniously combines French Art Deco architecture with traditional Chinese elements and houses the oldest operational elevator in Saigon. Open daily from 8:00 AM to 5:00 PM. Admission ticket is 30,000 VND for adults and 15,000 VND for students.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Arts and Culture"
   },
   {
     "id": "G13",
-    "title": "Hẻm ẩm thực 200 Xóm Chiếu (Quận 4)",
+    "title": "Alley 200 Xom Chieu Food Street (District 4)",
     "category": "street_food",
-    "tags": ["ẩm thực đường phố", "quận 4", "ăn vặt", "giá rẻ"],
-    "text": "Hẻm 200 Xóm Chiếu, Phường 14, Quận 4 được mệnh danh là 'thiên đường ăn vặt' nức tiếng Sài Gòn. Đoạn đường hẻm dài khoảng 500m nhưng tập trung hàng chục quán ăn san sát nhau, bắt đầu nhộn nhịp từ 16:00 đến 23:00 đêm. Các món ăn đặc sắc gồm phá lấu bò, chuối nướng cốt dừa, ốc các loại, mì hến và súp cua với mức giá bình dân từ 20.000 đến 50.000 VNĐ mỗi món.",
-    "source": "Lumen Travel Guide TP.HCM - Ẩm thực đường phố"
+    "tags": ["street_food", "district_4", "snack", "budget"],
+    "text": "Alley 200 Xom Chieu in Ward 14, District 4 is widely regarded as one of Saigon's finest street food havens. Stretching roughly 500 meters, the alley hosts dozens of vibrant food stalls operating daily from 4:00 PM to 11:00 PM. Popular dishes include beef offal stew (pha lau), grilled banana in coconut milk, fresh shellfish, and crab soup, with affordable prices ranging between 20,000 and 50,000 VND per portion.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Culinary Culture"
   },
   {
     "id": "G14",
-    "title": "Bến Bạch Đằng và Tuyến xe buýt đường sông (Saigon Waterbus)",
+    "title": "Bach Dang Wharf and Saigon Waterbus",
     "category": "entertainment",
-    "tags": ["du thuyền", "sông sài gòn", "ngắm cảnh", "quận 1"],
-    "text": "Bến Bạch Đằng nằm dọc đường Tôn Đức Thắng, Phường Bến Nghé, Quận 1 với công viên ven sông thoáng mát nhìn sang bán đảo Thủ Thiêm. Tại đây, du khách có thể trải nghiệm tuyến buýt sông Saigon Waterbus khởi hành từ ga Bạch Đằng đi Linh Đông (Thủ Đức). Chuyến đi mang lại góc nhìn ngắm hoàng hôn và sông nước Sài Gòn tuyệt đẹp. Giá vé một chiều chỉ 15.000 VNĐ/người, nên đặt vé trước vào cuối tuần để tránh hết chỗ.",
-    "source": "Lumen Travel Guide TP.HCM - Trải nghiệm sông nước"
+    "tags": ["waterbus", "saigon_river", "scenic_view", "district_1"],
+    "text": "Bach Dang Wharf is located along Ton Duc Thang Street, Ben Nghe Ward, District 1, offering a scenic riverside park looking across to the Thu Thiem peninsula. From Bach Dang Station, passengers can take the public Saigon Waterbus cruising upriver to Linh Dong Station in Thu Duc. It provides an exceptional sunset view over the city skyline. A one-way ticket costs 15,000 VND per person; booking in advance is advised on weekends.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - River Experiences"
   },
   {
     "id": "G15",
-    "title": "Chợ hoa Hồ Thị Kỷ",
+    "title": "Ho Thi Ky Flower and Street Food Market",
     "category": "market",
-    "tags": ["chợ hoa", "ẩm thực campuchia", "quận 10", "ăn đêm"],
-    "text": "Chợ Hồ Thị Kỷ nằm sâu trong các con hẻm tại Phường 1, Quận 10, là chợ đầu mối hoa tươi lớn nhất thành phố hoạt động suốt 24/24. Ngoài ngàn sắc hoa tươi nhập từ Đà Lạt và miền Tây, từ 15:00 đến nửa đêm khu chợ còn là con phố ẩm thực nức tiếng với các món ăn vặt Campuchia đặc trưng như chè Campuchia cô Huôi, nem nướng bò bía, bún num bo chóc giá từ 15.000 đến 45.000 VNĐ.",
-    "source": "Lumen Travel Guide TP.HCM - Mua sắm và Ẩm thực"
+    "tags": ["flower_market", "cambodian_food", "district_10", "night_market"],
+    "text": "Located in alley networks off Ward 1, District 10, Ho Thi Ky is the largest wholesale fresh flower market in Ho Chi Minh City, operating 24 hours a day with blooms from Da Lat and the Mekong Delta. From 3:00 PM until midnight, the market area transforms into a celebrated street food street famous for Cambodian snacks such as sweet dessert soups, grilled Cambodian sausages, and num bo chok noodles, priced from 15,000 to 45,000 VND.",
+    "source": "Lumen Travel Guide Ho Chi Minh City - Shopping and Dining"
   }
 ]

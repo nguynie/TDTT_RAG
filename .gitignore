@@ -3,8 +3,6 @@
 __pycache__/
 *.pyc
 .streamlit/
-lab03_firebase_streamlit/
 *.pdf
-Untitled*
 .ipynb_checkpoints/
 

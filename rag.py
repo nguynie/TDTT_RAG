@@ -1,7 +1,3 @@
-"""RAG module for Lumen Travel Assistant.
-Implements embedding computation, cosine similarity retrieval, and generation with Ollama.
-"""
-
 import json
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -20,34 +16,31 @@ class RAGError(Exception):
 
 
 def load_knowledge_base(file_path: str = "knowledge_base.json") -> List[Dict[str, Any]]:
-    """Load knowledge base from JSON file."""
+    """Load travel knowledge base from JSON file."""
     path = Path(file_path)
     if not path.is_file():
         path = Path(__file__).resolve().parent / file_path
     if not path.is_file():
-        raise RAGError(f"Không tìm thấy file cẩm nang: {file_path}")
+        raise RAGError(f"Knowledge base file not found: {file_path}")
     try:
         with open(path, "r", encoding="utf-8") as f:
             data = json.load(f)
         if not isinstance(data, list):
-            raise ValueError("Dữ liệu knowledge base phải là một danh sách.")
+            raise ValueError("Knowledge base data must be a list of entries.")
         return data
     except Exception as e:
-        raise RAGError(f"Lỗi khi đọc knowledge_base.json: {e}") from e
+        raise RAGError(f"Error reading knowledge base: {e}") from e
 
 
 def get_embedding(text: str, base_url: str = OLLAMA_BASE_URL, model: str = EMBEDDING_MODEL) -> np.ndarray:
-    """Compute embedding vector using Ollama's embedding API.
-    Supports both /api/embeddings and /api/embed endpoints.
-    """
+    """Compute embedding vector using Ollama embedding API."""
     if not text.strip():
-        raise RAGError("Không thể tính embedding cho văn bản trống.")
+        raise RAGError("Cannot compute embedding for empty text.")
 
     cleaned_url = base_url.rstrip("/")
     if not cleaned_url:
-        raise RAGError("Ollama URL chưa được cấu hình. Vui lòng kiểm tra file .env.")
+        raise RAGError("Ollama URL is not configured. Please check your .env file.")
 
-    # 1. Try legacy /api/embeddings endpoint
     try:
         res = requests.post(
             f"{cleaned_url}/api/embeddings",
@@ -63,7 +56,6 @@ def get_embedding(text: str, base_url: str = OLLAMA_BASE_URL, model: str = EMBED
     except requests.RequestException:
         pass
 
-    # 2. Try newer /api/embed endpoint
     try:
         res = requests.post(
             f"{cleaned_url}/api/embed",
@@ -78,13 +70,13 @@ def get_embedding(text: str, base_url: str = OLLAMA_BASE_URL, model: str = EMBED
                 norm = np.linalg.norm(arr)
                 return arr / norm if norm > 0 else arr
     except requests.RequestException as e:
-        raise RAGError(f"Không thể kết nối đến máy chủ Ollama tại {cleaned_url}. Kiểm tra server hoặc kết nối mạng.") from e
+        raise RAGError(f"Unable to connect to Ollama server at {cleaned_url}. Check network or server status.") from e
 
-    raise RAGError(f"Máy chủ Ollama không trả về embedding với model '{model}'. Kiểm tra model đã được tải chưa.")
+    raise RAGError(f"Ollama server returned no embedding for model '{model}'. Verify model is pulled.")
 
 
 def index_knowledge_base(kb: List[Dict[str, Any]], base_url: str = OLLAMA_BASE_URL) -> List[Tuple[Dict[str, Any], np.ndarray]]:
-    """Compute and cache embeddings for all knowledge base items."""
+    """Compute embeddings for all knowledge base items."""
     indexed = []
     for item in kb:
         tags_str = ", ".join(item.get("tags", [])) if item.get("tags") else ""
@@ -110,7 +102,7 @@ def retrieve_relevant_entries(
     base_url: str = OLLAMA_BASE_URL,
     top_k: int = TOP_K,
 ) -> List[Tuple[Dict[str, Any], float]]:
-    """Retrieve top-k relevant entries for a given query with similarity scores."""
+    """Retrieve top-k relevant entries for a given query sorted by cosine similarity."""
     if not query.strip():
         return []
 
@@ -120,33 +112,32 @@ def retrieve_relevant_entries(
         score = cosine_similarity(q_vec, item_vec)
         scored_items.append((item, score))
 
-    # Sort descending by cosine similarity score
     scored_items.sort(key=lambda x: x[1], reverse=True)
     return scored_items[:top_k]
 
 
 def build_system_prompt(retrieved_entries: List[Tuple[Dict[str, Any], float]]) -> str:
-    """Construct a strict system prompt preventing hallucination and enforcing citations."""
+    """Construct system prompt enforcing factual grounding and citations."""
     context_chunks = []
-    for item, score in retrieved_entries:
+    for item, _ in retrieved_entries:
         context_chunks.append(
-            f"Mục [{item['id']}] - {item['title']} (Chủ đề: {item.get('category', 'Chung')}):\n"
+            f"Entry [{item['id']}] - {item['title']} (Category: {item.get('category', 'general')}):\n"
             f"{item['text']}\n"
-            f"(Nguồn: {item.get('source', 'Lumen Travel')})"
+            f"(Source: {item.get('source', 'Lumen Travel')})"
         )
 
     context_str = "\n\n".join(context_chunks)
 
     prompt = (
-        "Bạn là trợ lý du lịch AI chính thức của Lumen Travel chuyên cung cấp thông tin du lịch về TP. Hồ Chí Minh.\n\n"
-        "QUY TẮC CỐT LÕI (BẮT BUỘC TUÂN THỦ NGHIÊM NGẶT):\n"
-        "1. Bạn CHỈ ĐƯỢC PHÉP trả lời dựa trên các thông tin có trong phần [NGỮ CẢNH CẨM NANG] bên dưới.\n"
-        "2. Mọi thông tin cung cấp (địa chỉ, giá vé, giờ mở cửa, lịch sử, ẩm thực,...) PHẢI kèm mã định danh mục tương ứng trong ngoặc vuông, ví dụ: [G01], [G02], [G05].\n"
-        "3. NGUYÊN TẮC 'TÔI KHÔNG BIẾT' (I DON'T KNOW): Nếu câu hỏi của người dùng hỏi về địa điểm, giá cả, dịch vụ, hoặc thông tin KHÔNG có trong [NGỮ CẢNH CẨM NANG], bạn PHẢI trả lời chính xác: 'Tôi không biết thông tin này vì cẩm nang du lịch Lumen Travel hiện chưa cập nhật.' Tuyệt đối KHÔNG ĐƯỢC đoán mò, KHÔNG tự suy diễn, và KHÔNG dùng kiến thức bên ngoài.\n"
-        "4. Trả lời bằng tiếng Việt lịch sự, tự nhiên, súc tích và đúng trọng tâm câu hỏi.\n\n"
-        "=== [NGỮ CẢNH CẨM NANG] ===\n"
+        "You are the official AI travel assistant of Lumen Travel specializing in Ho Chi Minh City tourism.\n\n"
+        "CORE RULES (STRICT COMPLIANCE REQUIRED):\n"
+        "1. You may ONLY answer based on the information provided in the [TRAVEL GUIDE CONTEXT] below.\n"
+        "2. Every factual statement (address, admission fee, opening hours, history, food, etc.) MUST cite its corresponding entry ID in square brackets, e.g. [G01], [G02], [G05].\n"
+        "3. 'I DON'T KNOW' RULE: If the user's question asks about places, prices, services, or details NOT contained in [TRAVEL GUIDE CONTEXT], you MUST answer exactly: 'I don't know this information as it is not currently covered in the Lumen Travel guide.' Never guess, speculate, or introduce external knowledge.\n"
+        "4. Reply in clear, polite, and concise English.\n\n"
+        "=== [TRAVEL GUIDE CONTEXT] ===\n"
         f"{context_str}\n"
-        "=== HẾT NGỮ CẢNH ==="
+        "=== END CONTEXT ==="
     )
     return prompt
 
@@ -157,19 +148,17 @@ def generate_rag_answer(
     base_url: str = OLLAMA_BASE_URL,
     chat_model: str = CHAT_MODEL,
 ) -> str:
-    """Generate final answer using Ollama qwen3:4b model."""
+    """Generate final answer using Ollama model."""
     cleaned_url = base_url.rstrip("/")
     if not cleaned_url:
-        raise RAGError("Ollama URL chưa được cấu hình trong .env.")
+        raise RAGError("Ollama URL is not configured in .env.")
 
-    # Check if all scores are lower than minimum threshold
     max_score = retrieved_entries[0][1] if retrieved_entries else 0.0
     if max_score < SIMILARITY_THRESHOLD:
-        return "Tôi không biết thông tin này vì cẩm nang du lịch Lumen Travel hiện chưa cập nhật."
+        return "I don't know this information as it is not currently covered in the Lumen Travel guide."
 
     system_prompt = build_system_prompt(retrieved_entries)
 
-    # 1. Try /api/chat
     payload = {
         "model": chat_model,
         "messages": [
@@ -178,7 +167,7 @@ def generate_rag_answer(
         ],
         "stream": False,
         "options": {
-            "temperature": 0.1,  # Low temperature for factual consistency
+            "temperature": 0.1,
         },
     }
 
@@ -192,10 +181,9 @@ def generate_rag_answer(
     except requests.RequestException:
         pass
 
-    # 2. Fallback to /api/generate
     gen_payload = {
         "model": chat_model,
-        "prompt": f"{system_prompt}\n\nNgười dùng: {query}\nTrợ lý:",
+        "prompt": f"{system_prompt}\n\nUser: {query}\nAssistant:",
         "stream": False,
         "options": {
             "temperature": 0.1,
@@ -210,8 +198,8 @@ def generate_rag_answer(
             if content:
                 return content
         else:
-            raise RAGError(f"Ollama trả về mã lỗi {res.status_code}: {res.text}")
+            raise RAGError(f"Ollama returned error status {res.status_code}: {res.text}")
     except requests.RequestException as e:
-        raise RAGError(f"Không thể kết nối đến máy chủ Ollama tại {cleaned_url}. Chi tiết: {e}") from e
+        raise RAGError(f"Unable to connect to Ollama server at {cleaned_url}: {e}") from e
 
-    raise RAGError("Không nhận được câu trả lời từ mô hình sinh.")
+    raise RAGError("No response received from generation model.")

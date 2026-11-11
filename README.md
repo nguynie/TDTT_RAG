@@ -1,158 +1,159 @@
-# 🏙️ Lumen Travel Assistant with RAG Chat (TP. Hồ Chí Minh)
+# Lumen Travel Assistant with RAG Chat (Ho Chi Minh City)
 
-Dự án Trợ lý Du lịch Thông minh dành cho **Thành phố Hồ Chí Minh**, kết hợp xác thực người dùng bằng **Firebase Authentication** và hệ thống hỏi đáp chính xác bằng kỹ thuật **RAG (Retrieval-Augmented Generation)** với **Ollama**.
-
----
-
-## 📌 Thông tin sinh viên & Đề tài
-- **Môn học:** Tư duy tính toán (Computational Thinking - CSC10014)
-- **Bài tập:** Practice 03 - Sign-in Travel Assistant with RAG Chat
-- **Họ và tên sinh viên:** *(Điền họ tên của bạn vào đây)*
-- **Mã số sinh viên (MSSV):** *(Điền MSSV của bạn vào đây)*
-- **Thành phố lựa chọn:** **TP. Hồ Chí Minh (TP.HCM)**
-- **Video Demonstration:** [Đường dẫn YouTube / Google Drive của bạn]
+An intelligent travel assistant for **Ho Chi Minh City**, combining user authentication via **Firebase Authentication** and grounded question answering using **Retrieval-Augmented Generation (RAG)** powered by **Ollama**.
 
 ---
 
-## 🛠️ Hướng dẫn cài đặt và Khởi chạy
+## Student Information & Topic
+- **Course:** Computational Thinking (CSC10014)
+- **Assignment:** Practice 03 - Sign-in Travel Assistant with RAG Chat
+- **Student Name:** Nguyen Ngoc Phuc Nguyen
+- **Student ID:** 25127434
+- **Selected City:** Ho Chi Minh City
+- **Demonstration Video:** [Your YouTube / Google Drive link]
 
-### 1. Chuẩn bị môi trường
-Yêu cầu hệ điều hành có cài đặt **Python 3.10+**.
+---
 
-Tạo và kích hoạt môi trường ảo (virtual environment):
+## Installation & Running Instructions
+
+### 1. Environment Setup
+Requires **Python 3.10+**.
+
+Create and activate a virtual environment:
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate   # Trên Linux/macOS
-# Hoặc .venv\Scripts\activate trên Windows
+source .venv/bin/activate   # On Linux/macOS
+# Or .venv\Scripts\activate on Windows
 ```
 
-Cài đặt các gói thư viện cần thiết:
+Install required dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-### 2. Cấu hình biến môi trường (`.env`)
-Sao chép file `.env.example` thành `.env`:
+### 2. Environment Variables Configuration (`.env`)
+Copy `.env.example` to `.env`:
 ```bash
 cp .env.example .env
 ```
-Điền các giá trị thực tế vào file `.env`:
+
+Populate the required credentials in `.env`:
 ```ini
-# Firebase Authentication (lấy từ Firebase Console > Project Settings)
+# Firebase Authentication (from Firebase Console > Project Settings)
 FIREBASE_PROJECT_ID=your-firebase-project-id
 FIREBASE_API_KEY=your-firebase-web-api-key
 
-# Địa chỉ máy chủ Ollama (hoặc đường dẫn Pinggy tunnel từ Lab 4)
+# Ollama server base URL (e.g. Pinggy tunnel URL from Lab 4 or local server)
 OLLAMA_BASE_URL=http://localhost:11434
 
-# Tên mô hình
+# Model configurations
 EMBEDDING_MODEL=embeddinggemma
 CHAT_MODEL=qwen3:4b
 
-# Tham số RAG
+# Retrieval parameters
 TOP_K=3
 SIMILARITY_THRESHOLD=0.25
 ```
 
-> **Lưu ý quan trọng:** Không bao giờ commit file `.env` lên GitHub (file này đã được đưa vào `.gitignore`).
+> **Security Note:** Never commit `.env` to GitHub (it is excluded via `.gitignore`).
 
-### 3. Chạy ứng dụng Streamlit
+### 3. Run the Streamlit Application
 ```bash
 streamlit run app.py
 ```
-Sau đó truy cập trình duyệt tại địa chỉ: `http://localhost:8501`.
+Open your browser at `http://localhost:8501`.
 
 ---
 
-## 📊 Bảng kiểm thử (Test Table)
+## Test Table
 
-Dưới đây là kết quả kiểm thử trên 6 câu hỏi tiêu biểu (3 câu có trong cẩm nang, 1 câu diễn đạt lại - paraphrase, 2 câu ngoài cẩm nang):
+The evaluation table below demonstrates 6 representative test questions (3 directly answerable, 1 paraphrase, 2 out-of-guide questions):
 
-| STT | Câu hỏi kiểm thử | Loại câu hỏi | Expected ID | Retrieved IDs | Kết quả | Phân tích lỗi (nếu sai) |
+| No. | Test Question | Type | Expected ID | Retrieved IDs | Result | Failure Analysis (if failed) |
 |:---:|:---|:---:|:---:|:---:|:---:|:---|
-| **1** | Giá vé tham quan Dinh Độc Lập cho người lớn là bao nhiêu? | Trực tiếp | `[G01]` | `[G01]`, `[G12]`, `[G05]` | ✅ Đúng | Trả lời chính xác 40.000 VNĐ, trích dẫn `[G01]`. |
-| **2** | Giờ mở cửa của Bảo tàng Chứng tích Chiến tranh? | Trực tiếp | `[G05]` | `[G05]`, `[G12]`, `[G01]` | ✅ Đúng | Trả lời chính xác 7:30 - 17:30, trích dẫn `[G05]`. |
-| **3** | Phố đi bộ Bùi Viện cấm xe vào khung giờ nào cuối tuần? | Trực tiếp | `[G11]` | `[G11]`, `[G06]`, `[G02]` | ✅ Đúng | Trả lời chính xác từ 19:00 đến 2:00 sáng hôm sau, trích dẫn `[G11]`. |
-| **4** | Ở Sài Gòn muốn đi tàu ngắm hoàng hôn trên sông thì đi ở đâu và giá vé thế nào? | Paraphrase (Diễn đạt lại) | `[G14]` | `[G14]`, `[G06]`, `[G10]` | ✅ Đúng | Nhận diện đúng tuyến buýt sông Saigon Waterbus tại Bến Bạch Đằng, giá 15.000 VNĐ/lượt, trích dẫn `[G14]`. |
-| **5** | Giá vé vào cổng Sun World Bà Nà Hills là bao nhiêu? | Ngoài cẩm nang (Địa điểm Đà Nẵng) | Không có (`None`) | `[G10]`, `[G07]`, `[G14]` (Điểm tương đồng thấp) | ✅ Đúng | Trợ lý trả lời: "Tôi không biết thông tin này vì cẩm nang du lịch Lumen Travel hiện chưa cập nhật." (Không đoán mò). |
-| **6** | Lẩu dê Trương Định mở cửa đến mấy giờ? | Ngoài cẩm nang (Quán ăn ngoài danh mục) | Không có (`None`) | `[G13]`, `[G15]`, `[G02]` | ✅ Đúng | Trợ lý từ chối trả lời vì cẩm nang chưa cập nhật thông tin quán này. |
+| 1 | What is the adult admission ticket price for Independence Palace? | Answerable | `[G01]` | `[G01]`, `[G12]`, `[G05]` | Pass | Correctly answered 40,000 VND citing `[G01]`. |
+| 2 | What are the opening hours of the War Remnants Museum? | Answerable | `[G05]` | `[G05]`, `[G12]`, `[G01]` | Pass | Correctly answered 7:30 AM to 5:30 PM citing `[G05]`. |
+| 3 | During which hours on weekends is Bui Vien Walking Street closed to vehicles? | Answerable | `[G11]` | `[G11]`, `[G06]`, `[G02]` | Pass | Correctly answered 7:00 PM to 2:00 AM citing `[G11]`. |
+| 4 | Where can I take a boat trip to watch the sunset on the river in Saigon and how much does it cost? | Paraphrase | `[G14]` | `[G14]`, `[G06]`, `[G10]` | Pass | Correctly identified Saigon Waterbus at Bach Dang Wharf, 15,000 VND one-way, citing `[G14]`. |
+| 5 | How much is the entrance ticket to Sun World Ba Na Hills? | Not in guide (Da Nang landmark) | `None` | `[G10]`, `[G07]`, `[G14]` (Low similarity) | Pass | Correctly rejected: "I don't know this information as it is not currently covered in the Lumen Travel guide." |
+| 6 | What time does Truong Dinh Goat Hotpot restaurant close? | Not in guide (Unlisted restaurant) | `None` | `[G13]`, `[G15]`, `[G02]` | Pass | Correctly refused to speculate and stated the guide does not cover this restaurant. |
 
 ---
 
-## 🧠 Phân tích 4 trụ cột Tư duy tính toán (Computational Thinking)
+## Computational Thinking Analysis
 
-### 1. Trừu tượng hóa (Abstraction)
-- **Input của hệ thống:** Câu hỏi bằng ngôn ngữ tự nhiên từ người dùng đã đăng nhập.
-- **Output của hệ thống:** Câu trả lời chuẩn xác chỉ dựa trên ngữ cảnh kèm trích dẫn ID mục (`[Gxx]`) và danh sách mục tham khảo kèm điểm tương đồng (Cosine Similarity Score).
-- **Mô hình hóa dữ liệu cẩm nang (`knowledge_base.json`):**
-  - Giữ lại các trường: `id`, `title`, `category`, `tags`, `text`, `source`.
-  - **Lý do:**
-    - `id`, `title`, `text`: Đầy đủ ngữ nghĩa để thực hiện tìm kiếm vector và cung cấp ngữ cảnh cho LLM.
-    - `category`, `tags`: Hỗ trợ phân loại địa điểm và phục vụ làm tiền đề cho hệ thống gợi ý du lịch (Assignment 04 - RAG-Rec).
-    - Lược bỏ các thông tin rườm rà (hình ảnh thô, mã HTML) để giữ context gọn gàng, tăng tốc độ xử lý embedding.
+### 1. Abstraction
+- **System Inputs:** Natural language queries submitted by authenticated users.
+- **System Outputs:** Factually grounded responses citing entry IDs (`[Gxx]`), accompanied by retrieved entries and their cosine similarity scores.
+- **Data Modeling (`knowledge_base.json`):**
+  - Retained fields: `id`, `title`, `category`, `tags`, `text`, `source`.
+  - **Rationale:**
+    - `id`, `title`, `text`: Provide sufficient semantic context for vector retrieval and grounded generation.
+    - `category`, `tags`: Enable structured categorization and prepare foundational metadata for recommendation filtering in Assignment 04 (RAG-Rec).
+    - Unstructured layout artifacts (HTML tags, raw image URLs) were omitted to preserve context window capacity and accelerate embedding computation.
 
-### 2. Phân rã bài toán (Decomposition)
-Hệ thống được chia thành 6 module/bài toán con nối tiếp:
+### 2. Decomposition
+The application decomposes into 6 sequential sub-problems:
 ```
 [1. Sign-in]
-    ↓ (User Token / Email)
+    ↓ (Firebase Session: UID, Token)
 [2. Embed User Query]
     ↓ (Query Vector)
 [3. Retrieve Top-K & Score]
-    ↓ (Top-k Relevant Chunks + Scores)
+    ↓ (Top-K Chunks + Similarity Scores)
 [4. Build Context & System Prompt]
-    ↓ (Augmented Prompt)
+    ↓ (Grounded Prompt)
 [5. Generate via Ollama LLM]
-    ↓ (Strict Fact-based Answer)
+    ↓ (Fact-based Answer with Citations)
 [6. Display & Session History]
 ```
-- **Hộp 1 (Sign-in):** In: Email, Password $\rightarrow$ Out: Firebase Session (`uid`, `token`).
-- **Hộp 2 (Embed):** In: Chuỗi câu hỏi $\rightarrow$ Out: Vector số thực biểu diễn ngữ nghĩa.
-- **Hộp 3 (Retrieve):** In: Query Vector + Indexed KB $\rightarrow$ Out: Danh sách Top-K mục có Cosine Similarity cao nhất.
-- **Hộp 4 (Build Context):** In: Top-K Entries + Query $\rightarrow$ Out: Prompt kèm quy tắc không bịa đặt.
-- **Hộp 5 (Generate):** In: Prompt $\rightarrow$ Out: Câu trả lời văn bản kèm trích dẫn.
-- **Hộp 6 (Display):** In: Output văn bản + Scores $\rightarrow$ Out: Giao diện chat Streamlit + Expander điểm số.
+- **Box 1 (Sign-in):** In: Email, Password -> Out: Firebase session (`uid`, `id_token`).
+- **Box 2 (Embed):** In: Query string -> Out: Dense embedding vector.
+- **Box 3 (Retrieve):** In: Query Vector + Indexed KB -> Out: Top-K entries with highest Cosine Similarity.
+- **Box 4 (Build Context):** In: Top-K Entries + Query -> Out: Grounded prompt enforcing the "I don't know" policy.
+- **Box 5 (Generate):** In: Augmented prompt -> Out: Grounded response with `[Gxx]` citations.
+- **Box 6 (Display):** In: Response text + Scores -> Out: Streamlit chat interface + expandable score inspection.
 
-### 3. Nhận diện mẫu (Pattern Recognition)
-- **Kế thừa từ Lab 3 & Lab 4:**
-  - Mô hình xác thực Client-side REST API với Firebase Auth (Lab 3).
-  - Kết nối mô hình nhúng và sinh qua Ollama API (Lab 4).
-- **Mẫu thiết kế (Design Pattern):** Mẫu kinh điển **Filter $\rightarrow$ Score $\rightarrow$ Top-K**:
-  - Tính điểm tương đồng góc giữa vector câu hỏi và từng vector tài liệu (Cosine Similarity).
-  - Sắp xếp giảm dần và lấy $K$ kết quả cao nhất.
-- **Áp dụng tiếp trong RAG-Rec (Assignment 4):**
-  - Mẫu này sẽ tiếp tục được mở rộng khi người dùng đưa ra sở thích (vd: thích `museum`, ngân sách $< 50k$), hệ thống sẽ kết hợp *Metadata Filtering* (theo `category`, `tags`) cùng với *Vector Scoring* để xếp hạng địa điểm đề xuất.
+### 3. Pattern Recognition
+- **Reuse from Labs 3 & 4:**
+  - Client-side REST authentication with Firebase Auth (Lab 3).
+  - Model embedding and generation via Ollama HTTP endpoints (Lab 4).
+- **Core Pattern:** The classic **Filter -> Score -> Top-K** workflow:
+  - Compute angle similarity between the query vector and document vectors (Cosine Similarity).
+  - Rank in descending order and select top $K$ items.
+- **Application in RAG-Rec (Assignment 4):**
+  - This pattern will extend to user preferences: combining metadata filtering (by `category` or `tags`) with vector similarity scoring to recommend travel itineraries.
 
-### 4. Thiết kế thuật toán (Algorithm Design)
+### 4. Algorithm Design
 
-#### Mã giả (Pseudocode) xử lý một câu hỏi:
+#### Pseudocode for answering one query:
 ```text
-Thuật toán: TraCuuRAG(cau_hoi, danh_sach_cam_nang, top_k, nguong_similarity)
-    1. query_vector ← LayEmbedding(cau_hoi, model="embeddinggemma")
-    2. danh_sach_diem ← []
-    3. FOR MOI (muc, vector_muc) TRONG danh_sach_cam_nang DO:
-           diem ← TinhCosineSimilarity(query_vector, vector_muc)
-           Them (muc, diem) VAO danh_sach_diem
+Algorithm: AnswerTravelQuery(query, indexed_kb, top_k, similarity_threshold)
+    1. query_vector <- GetEmbedding(query, model="embeddinggemma")
+    2. scored_list <- []
+    3. FOR EACH (entry, entry_vector) IN indexed_kb DO:
+           score <- CosineSimilarity(query_vector, entry_vector)
+           Append (entry, score) TO scored_list
        ENDFOR
-    4. SapXepGiamDanTheoDiem(danh_sach_diem)
-    5. top_entries ← danh_sach_diem[0 : top_k]
-    6. IF top_entries[0].diem < nguong_similarity THEN:
-           RETURN "Tôi không biết thông tin này vì cẩm nang chưa cập nhật."
+    4. SortDescendingByScore(scored_list)
+    5. top_entries <- scored_list[0 : top_k]
+    6. IF top_entries[0].score < similarity_threshold THEN:
+           RETURN "I don't know this information as it is not currently covered in the Lumen Travel guide."
        ENDIF
-    7. prompt_ngu_canh ← TaoPrompt(top_entries, cau_hoi)
-    8. cau_tra_loi ← GoiOllamaChat(model="qwen3:4b", prompt_ngu_canh)
-    9. RETURN cau_tra_loi, top_entries
+    7. prompt <- ConstructPrompt(top_entries, query)
+    8. answer <- OllamaChat(model="qwen3:4b", prompt)
+    9. RETURN answer, top_entries
 ```
 
-#### Quyết định thiết kế (Design Decision):
-- **Chọn $K = 3$:** Vì các đoạn văn trong cẩm nang về một địa điểm đã chứa trọn vẹn thông tin (địa chỉ, giá vé, giờ mở cửa). Lựa chọn $K=3$ cung cấp đủ ngữ cảnh cho các câu hỏi so sánh hoặc diễn đạt lại mà không làm bão hòa context window của mô hình `qwen3:4b`.
-- **Ngưỡng tương đồng kết hợp System Prompt chống đoán mò:** Đặt ngưỡng `SIMILARITY_THRESHOLD = 0.25` kết hợp System Prompt với nhiệt độ `temperature = 0.1`. Khi câu hỏi hoàn toàn lạc đề, điểm số thấp sẽ kích hoạt phản hồi "Tôi không biết" ngay lập tức, tiết kiệm thời gian gọi LLM.
+#### Design Decisions:
+- **Selection of $K = 3$:** Each knowledge base entry is self-contained with comprehensive details (address, fee, schedule). A value of $K = 3$ provides sufficient breadth for multi-faceted or paraphrased questions without polluting the context window.
+- **Two-tier Hallucination Prevention:** A strict similarity cutoff (`SIMILARITY_THRESHOLD = 0.25`) rejects irrelevant queries early without consuming LLM generation tokens. For borderline queries, a low temperature (`temperature = 0.1`) and explicit system prompt constraints force the model to declare lack of information rather than speculate.
 
 ---
 
-## ⚠️ Hạn chế đã biết (Known Limitations) & AI Tools
-- **Hạn chế đã biết:**
-  - Cẩm nang hiện tại giới hạn ở 15 địa điểm nổi bật của TP.HCM; các hàng quán nhỏ hoặc địa điểm mới xuất hiện chưa được cập nhật.
-  - Tốc độ sinh phản hồi phụ thuộc vào băng thông và cấu hình máy chủ chạy Ollama (Pinggy tunnel).
-- **Công cụ AI hỗ trợ:**
-  - Sử dụng AI Coding Assistant để tham khảo cú pháp Streamlit và viết prompt cho LLM. Toàn bộ logic giải thuật, tích hợp và kiểm thử do sinh viên tự hoàn thiện và kiểm soát.
+## Known Limitations & AI Tools Note
+- **Known Limitations:**
+  - The guide currently covers 15 key landmarks in Ho Chi Minh City; unlisted smaller venues or newly established locations are not present.
+  - Response latency depends on the network tunnel (Pinggy) and inference hardware hosting the Ollama server.
+- **AI Tools Used:**
+  - AI coding assistance was utilized for Streamlit syntax reference and prompt template drafting. Core architectural design, algorithmic pipeline, and test verification were independently validated by the student.
