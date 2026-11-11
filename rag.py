@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+import re
 from typing import Any, Dict, List, Tuple
 
 import numpy as np
@@ -13,6 +14,12 @@ OLLAMA_TIMEOUT = 120
 class RAGError(Exception):
     """User-safe exception for RAG pipeline errors."""
     pass
+
+
+def _clean_llm_output(text: str) -> str:
+    """Strip <think>...</think> reasoning blocks from model responses."""
+    cleaned = re.sub(r"<think>.*?</think>", "", text, flags=re.DOTALL)
+    return cleaned.strip()
 
 
 def load_knowledge_base(file_path: str = "knowledge_base.json") -> List[Dict[str, Any]]:
@@ -43,34 +50,31 @@ def get_embedding(text: str, base_url: str = OLLAMA_BASE_URL, model: str = EMBED
 
     try:
         res = requests.post(
-            f"{cleaned_url}/api/embeddings",
-            json={"model": model, "prompt": text},
-            timeout=OLLAMA_TIMEOUT,
-        )
-        if res.status_code == 200:
-            vec = res.json().get("embedding")
-            if vec and isinstance(vec, list):
-                arr = np.array(vec, dtype=np.float32)
-                norm = np.linalg.norm(arr)
-                return arr / norm if norm > 0 else arr
-    except requests.RequestException:
-        pass
-
-    try:
-        res = requests.post(
             f"{cleaned_url}/api/embed",
             json={"model": model, "input": text},
             timeout=OLLAMA_TIMEOUT,
         )
-        if res.status_code == 200:
-            data = res.json()
-            embeddings = data.get("embeddings") or [data.get("embedding")]
-            if embeddings and isinstance(embeddings, list) and embeddings[0]:
-                arr = np.array(embeddings[0], dtype=np.float32)
-                norm = np.linalg.norm(arr)
-                return arr / norm if norm > 0 else arr
+        # Fallback to legacy endpoint only if /api/embed is not found on older Ollama versions
+        if res.status_code == 404 and "model" not in res.text.lower():
+            res = requests.post(
+                f"{cleaned_url}/api/embeddings",
+                json={"model": model, "prompt": text},
+                timeout=OLLAMA_TIMEOUT,
+            )
     except requests.RequestException as e:
-        raise RAGError(f"Unable to connect to Ollama server at {cleaned_url}. Check network or server status.") from e
+        raise RAGError(f"Unable to connect to Ollama server at {cleaned_url}. Check network or Pinggy tunnel.") from e
+
+    if res.status_code in (502, 503, 504):
+        raise RAGError(f"Ollama server via tunnel ({cleaned_url}) is unreachable (HTTP {res.status_code}).")
+    if res.status_code != 200:
+        raise RAGError(f"Ollama embedding error (HTTP {res.status_code}): {res.text}")
+
+    data = res.json()
+    embeddings = data.get("embeddings") or ([data.get("embedding")] if data.get("embedding") else [])
+    if embeddings and isinstance(embeddings, list) and embeddings[0]:
+        arr = np.array(embeddings[0], dtype=np.float32)
+        norm = np.linalg.norm(arr)
+        return arr / norm if norm > 0 else arr
 
     raise RAGError(f"Ollama server returned no embedding for model '{model}'. Verify model is pulled.")
 
@@ -173,11 +177,13 @@ def generate_rag_answer(
 
     try:
         res = requests.post(f"{cleaned_url}/api/chat", json=payload, timeout=OLLAMA_TIMEOUT)
+        if res.status_code in (502, 503, 504):
+            raise RAGError(f"Ollama server via tunnel ({cleaned_url}) is unreachable (HTTP {res.status_code}).")
         if res.status_code == 200:
             data = res.json()
             content = data.get("message", {}).get("content", "").strip()
             if content:
-                return content
+                return _clean_llm_output(content)
     except requests.RequestException:
         pass
 
@@ -192,11 +198,13 @@ def generate_rag_answer(
 
     try:
         res = requests.post(f"{cleaned_url}/api/generate", json=gen_payload, timeout=OLLAMA_TIMEOUT)
+        if res.status_code in (502, 503, 504):
+            raise RAGError(f"Ollama server via tunnel ({cleaned_url}) is unreachable (HTTP {res.status_code}).")
         if res.status_code == 200:
             data = res.json()
             content = data.get("response", "").strip()
             if content:
-                return content
+                return _clean_llm_output(content)
         else:
             raise RAGError(f"Ollama returned error status {res.status_code}: {res.text}")
     except requests.RequestException as e:
