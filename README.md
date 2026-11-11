@@ -19,55 +19,37 @@ An intelligent travel assistant for **Ho Chi Minh City**, combining user authent
 ### 1. Environment Setup
 Requires **Python 3.10+**.
 
-Create and activate a virtual environment:
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate   # On Linux/macOS
-# Or .venv\Scripts\activate on Windows
-```
-
-Install required dependencies:
-```bash
+source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
 ### 2. Environment Variables Configuration (`.env`)
-Copy `.env.example` to `.env`:
 ```bash
 cp .env.example .env
 ```
 
-Populate the required credentials in `.env`:
+Set the values in `.env`:
 ```ini
-# Firebase Authentication (from Firebase Console > Project Settings)
 FIREBASE_PROJECT_ID=your-firebase-project-id
 FIREBASE_API_KEY=your-firebase-web-api-key
-
-# Ollama server base URL (e.g. Pinggy tunnel URL from Lab 4 or local server)
 OLLAMA_BASE_URL=http://localhost:11434
-
-# Model configurations
 EMBEDDING_MODEL=embeddinggemma
 CHAT_MODEL=qwen3:4b
-
-# Retrieval parameters
 TOP_K=3
 SIMILARITY_THRESHOLD=0.25
 ```
-
-> **Security Note:** Never commit `.env` to GitHub (it is excluded via `.gitignore`).
 
 ### 3. Run the Streamlit Application
 ```bash
 streamlit run app.py
 ```
-Open your browser at `http://localhost:8501`.
+Open browser at `http://localhost:8501`.
 
 ---
 
 ## Test Table
-
-The evaluation table below demonstrates 6 representative test questions (3 directly answerable, 1 paraphrase, 2 out-of-guide questions):
 
 | No. | Test Question | Type | Expected ID | Retrieved IDs | Result | Failure Analysis (if failed) |
 |:---:|:---|:---:|:---:|:---:|:---:|:---|
@@ -75,8 +57,8 @@ The evaluation table below demonstrates 6 representative test questions (3 direc
 | 2 | What are the opening hours of the War Remnants Museum? | Answerable | `[G05]` | `[G05]`, `[G12]`, `[G01]` | Pass | Correctly answered 7:30 AM to 5:30 PM citing `[G05]`. |
 | 3 | During which hours on weekends is Bui Vien Walking Street closed to vehicles? | Answerable | `[G11]` | `[G11]`, `[G06]`, `[G02]` | Pass | Correctly answered 7:00 PM to 2:00 AM citing `[G11]`. |
 | 4 | Where can I take a boat trip to watch the sunset on the river in Saigon and how much does it cost? | Paraphrase | `[G14]` | `[G14]`, `[G06]`, `[G10]` | Pass | Correctly identified Saigon Waterbus at Bach Dang Wharf, 15,000 VND one-way, citing `[G14]`. |
-| 5 | How much is the entrance ticket to Sun World Ba Na Hills? | Not in guide (Da Nang landmark) | `None` | `[G10]`, `[G07]`, `[G14]` (Low similarity) | Pass | Correctly rejected: "I don't know this information as it is not currently covered in the Lumen Travel guide." |
-| 6 | What time does Truong Dinh Goat Hotpot restaurant close? | Not in guide (Unlisted restaurant) | `None` | `[G13]`, `[G15]`, `[G02]` | Pass | Correctly refused to speculate and stated the guide does not cover this restaurant. |
+| 5 | How much is the entrance ticket to Sun World Ba Na Hills? | Not in guide | `None` | `[G10]`, `[G07]`, `[G14]` | Pass | Correctly rejected: "I don't know this information as it is not currently covered in the Lumen Travel guide." |
+| 6 | What time does Truong Dinh Goat Hotpot restaurant close? | Not in guide | `None` | `[G13]`, `[G15]`, `[G02]` | Pass | Correctly refused to speculate and stated the guide does not cover this restaurant. |
 
 ---
 
