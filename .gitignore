@@ -5,4 +5,5 @@ __pycache__/
 .streamlit/
 *.pdf
 .ipynb_checkpoints/
+AGENTS.md
 
