@@ -16,23 +16,64 @@ An intelligent travel assistant for **Ho Chi Minh City**, combining user authent
 
 ## Installation & Running Instructions
 
-### 1. Environment Setup
 Requires **Python 3.10+**.
 
-Create and activate a virtual environment:
+### 1. Environment Setup
+
+#### Option A: macOS & Linux
 ```bash
+# Create virtual environment
 python3 -m venv .venv
+
+# Activate virtual environment
 source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 ```
 
-### 2. Environment Variables Configuration (`.env`)
-Copy `.env.example` to `.env`:
-```bash
-cp .env.example .env
+#### Option B: Windows (PowerShell)
+```powershell
+# Create virtual environment
+python -m venv .venv
+
+# Activate virtual environment
+.venv\Scripts\Activate.ps1
+
+# Install dependencies
+pip install -r requirements.txt
+```
+> *Note for PowerShell:* If script execution is blocked, enable it by running:  
+> `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
+
+#### Option C: Windows (Command Prompt - CMD)
+```cmd
+:: Create virtual environment
+python -m venv .venv
+
+:: Activate virtual environment
+.venv\Scripts\activate.bat
+
+:: Install dependencies
+pip install -r requirements.txt
 ```
 
-Set the values in `.env`:
+---
+
+### 2. Environment Variables Configuration (`.env`)
+
+Copy `.env.example` to `.env`:
+
+- **macOS / Linux:**
+  ```bash
+  cp .env.example .env
+  ```
+- **Windows (PowerShell or CMD):**
+  ```cmd
+  copy .env.example .env
+  ```
+
+Configure your credentials and server endpoints in `.env`:
 ```ini
 FIREBASE_PROJECT_ID=your-firebase-project-id
 FIREBASE_API_KEY=your-firebase-web-api-key
@@ -43,11 +84,17 @@ TOP_K=3
 SIMILARITY_THRESHOLD=0.25
 ```
 
+---
+
 ### 3. Run the Streamlit Application
+
+With your virtual environment activated (on Windows, macOS, or Linux):
 ```bash
 streamlit run app.py
 ```
-Open browser at `http://localhost:8501`.
+*(Alternative if `streamlit` is not in PATH: `python -m streamlit run app.py`)*
+
+Open your browser at `http://localhost:8501`.
 
 ---
 
