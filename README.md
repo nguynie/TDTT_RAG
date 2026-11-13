@@ -20,7 +20,7 @@ Requires **Python 3.10+**.
 
 ### 1. Environment Setup
 
-#### Option A: macOS & Linux
+#### macOS & Linux
 ```bash
 # Create virtual environment
 python3 -m venv .venv
@@ -32,7 +32,7 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-#### Option B: Windows (PowerShell)
+#### Windows (PowerShell)
 ```powershell
 # Create virtual environment
 python -m venv .venv
@@ -41,20 +41,6 @@ python -m venv .venv
 .venv\Scripts\Activate.ps1
 
 # Install dependencies
-pip install -r requirements.txt
-```
-> *Note for PowerShell:* If script execution is blocked, enable it by running:  
-> `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
-
-#### Option C: Windows (Command Prompt - CMD)
-```cmd
-:: Create virtual environment
-python -m venv .venv
-
-:: Activate virtual environment
-.venv\Scripts\activate.bat
-
-:: Install dependencies
 pip install -r requirements.txt
 ```
 
@@ -68,7 +54,7 @@ Copy `.env.example` to `.env`:
   ```bash
   cp .env.example .env
   ```
-- **Windows (PowerShell or CMD):**
+- **Windows:**
   ```cmd
   copy .env.example .env
   ```
