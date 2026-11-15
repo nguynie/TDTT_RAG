@@ -94,7 +94,7 @@ Copy sẵn 2 câu này vào Notepad để dán nhanh vào app:
    List all attractions in District 1 that offer free entrance or free exterior visiting, and state their opening hours.
    ```
    - **Kỳ vọng:** Phải liệt kê đủ cả **5 địa điểm** miễn phí ở Quận 1: `[G03]` (Nhà thờ Đức Bà), `[G04]` (Bưu điện TP), `[G06]` (Phố đi bộ Nguyễn Huệ), `[G07]` (Thảo Cầm Viên cho trẻ < 1m), `[G11]` (Phố đi bộ Bùi Viện).
-   - **Kết quả thực tế:** **Fail**. Chỉ lấy được 3 địa điểm (`[G03]`, `[G04]`, `[G07]`), bỏ sót `[G06]` và `[G11]`.
+   - **Kết quả thực tế:** **Fail**. Do $K=3$, bước truy xuất chỉ lấy 3 mục (`[G07]`, `[G11]`, `[G06]`), bỏ sót hoàn toàn `[G03]` (Nhà thờ Đức Bà) và `[G04]` (Bưu điện TP).
    - **Bước thất bại (Failed Step):** **Failed at Retrieval Step** do giới hạn `TOP_K = 3`.
 
 ---
@@ -104,7 +104,7 @@ Copy sẵn 2 câu này vào Notepad để dán nhanh vào app:
 | Thời gian | Thao tác trên màn hình | Lời thoại thuyết minh (Script đọc) |
 | :--- | :--- | :--- |
 | **0:00 - 0:25** | - Đang ở giao diện Chat (sau khi đăng nhập).<br>- Dán câu hỏi test thành công (Câu 4) $\rightarrow$ Nhấn Enter.<br>- Chờ câu trả lời hiện ra và mở expander trích dẫn `[G14]`. | *"Tiếp theo là phần báo cáo kết quả kiểm thử. Đầu tiên là một ca thành công (Success case) với câu hỏi diễn đạt gián tiếp (Paraphrase): 'Where can I take a boat trip to watch the sunset on the river in Saigon and how much does it cost?'. Hệ thống tìm kiếm ngữ nghĩa rất tốt, trích xuất chính xác mục [G14] Saigon Waterbus tại bến Bạch Đằng và trả lời đúng giá vé 15,000 VND."* |
-| **0:25 - 0:50** | - Dán câu hỏi test thất bại (Câu 7) $\rightarrow$ Nhấn Enter.<br>- Khi câu trả lời hiện ra, mở expander chỉ vào 3 mục được lấy lên (`[G03]`, `[G04]`, `[G07]`). | *"Tiếp theo là một ca thất bại thực tế (Failure case) với câu hỏi tổng hợp nhiều địa điểm: 'List all attractions in District 1 that offer free entrance or free exterior visiting, and state their opening hours.'. Trong cẩm nang có tới 5 địa điểm miễn phí ở Quận 1, nhưng câu trả lời chỉ liệt kê được 3 địa điểm là G03, G04 và G07, bỏ sót phố đi bộ Nguyễn Huệ G06 và Bùi Viện G11."* |
+| **0:25 - 0:50** | - Dán câu hỏi test thất bại (Câu 7) $\rightarrow$ Nhấn Enter.<br>- Khi câu trả lời hiện ra, mở expander chỉ vào 3 mục được lấy lên (`[G07]`, `[G11]`, `[G06]`). | *"Tiếp theo là một ca thất bại thực tế (Failure case) với câu hỏi tổng hợp nhiều địa điểm: 'List all attractions in District 1 that offer free entrance or free exterior visiting, and state their opening hours.'. Trong cẩm nang có tới 5 địa điểm miễn phí ở Quận 1, nhưng do K=3, hệ thống chỉ lấy được 3 mục G07, G11 và G06, làm bỏ sót hoàn toàn Nhà thờ Đức Bà G03 và Bưu điện Thành phố G04."* |
 | **0:50 - 1:00** | - Dùng chuột chỉ vào bảng điểm Top-K trong expander (hoặc chuyển màn hình sang bảng Test Table trong README). | *"Hệ thống thất bại ở bước Truy xuất dữ liệu (Retrieval Step) do giới hạn TOP_K = 3. Dữ liệu trong cẩm nang có đủ (không thiếu data), mô hình qwen3:4b tổng hợp rất chính xác từ dữ liệu nhận được (không bị ảo giác), nhưng câu trả lời bị thiếu là do nút thắt cổ chai ở bước Retrieval."* |
 
 ---
@@ -119,7 +119,7 @@ Copy sẵn 2 câu này vào Notepad để dán nhanh vào app:
 >
 > *(Thao tác: Dán câu hỏi 7 và gửi)*
 >
-> *Tiếp theo là một ca thất bại thực tế với câu hỏi tổng hợp: 'List all attractions in District 1 that offer free entrance or free exterior visiting, and state their opening hours.'. Trong cẩm nang có tới 5 địa điểm ở Quận 1 mở cửa miễn phí, nhưng trợ lý chỉ trả lời được 3 địa điểm là G03, G04 và G07, làm sót mất phố đi bộ Nguyễn Huệ G06 và Bùi Viện G11.*
+> *Tiếp theo là một ca thất bại thực tế với câu hỏi tổng hợp: 'List all attractions in District 1 that offer free entrance or free exterior visiting, and state their opening hours.'. Trong cẩm nang có tới 5 địa điểm ở Quận 1 mở cửa miễn phí, nhưng do TOP_K = 3 nên hệ thống chỉ lấy được 3 mục là G07, G11 và G06, làm bỏ sót hoàn toàn Nhà thờ Đức Bà G03 và Bưu điện Thành phố G04.*
 >
 > *(Thao tác: Mở expander chỉ vào 3 mục Top-K)*
 >
