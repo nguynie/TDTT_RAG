@@ -1,72 +1,76 @@
-# KỊCH BẢN & HƯỚNG DẪN QUAY VIDEO DEMO (PHẦN DEMO: ~1.5 PHÚT)
+# KỊCH BẢN & HƯỚNG DẪN QUAY VIDEO DEMO (TỔNG THỜI LƯỢNG: 5:00)
 
-Tài liệu này hướng dẫn chi tiết từng **thao tác bấm trên màn hình** và **lời thoại (script)** tương ứng cho phần **Demo chức năng** (Mục 5 trong đề bài: *"Demo about 1.5 min: sign in, ask one answerable question (show the sources), ask one question not in the guide, then sign out"*).
+Tài liệu này hướng dẫn chi tiết từng **thao tác bấm trên màn hình** và **lời thoại (script)** tương ứng cho toàn bộ video nộp bài theo đúng yêu cầu đề bài `Assignment03_Auth_RAG_Chat.pdf`.
 
 ---
 
 ## 1. Chuẩn bị trước khi bấm quay (Pre-recording Checklist)
 
-1. **Khởi động server & app:**
-   - Đảm bảo máy chủ Ollama + Pinggy đang chạy và URL trong file `.env` còn hiệu lực.
-   - Chạy Streamlit: `streamlit run app.py`.
-   - Mở trình duyệt tại `http://localhost:8501`.
-   - **Mẹo giao diện:** Nhấn `Ctrl` + `+` (hoặc `Cmd` + `+`) để phóng to trình duyệt lên **110% - 125%** giúp chữ, điểm số và mã trích dẫn hiển thị rõ ràng trên video.
-2. **Chuẩn bị tài khoản & câu hỏi mẫu:**
-   - Dùng 1 tài khoản đã đăng ký trước (ví dụ: `test@example.com` / `123456`) để đăng nhập ngay mà không mất thời gian tạo mới.
-   - Mở sẵn 1 file Notepad chứa sẵn 2 câu hỏi test để **Copy - Paste**, tránh việc gõ phím chậm làm video vượt quá thời gian 1.5 phút:
-     - **Câu 1 (Có trong cẩm nang):**
+1. **Chuẩn bị các cửa sổ trên màn hình:**
+   - **Tab trình duyệt 1 (Google Colab):** Mở sẵn notebook `ollama_pinggy.ipynb` đã chạy xong tất cả các cell, cuộn sẵn đến cell cuối cùng đang hiển thị thông báo server Ollama sẵn sàng và đường link `Pinggy URL` (dạng `https://xxxxx.free.pinggy.net`).
+   - **Cửa sổ VS Code (hoặc Text Editor):** Mở sẵn file `.env` chứa dòng `OLLAMA_BASE_URL=https://xxxxx.free.pinggy.net` (khớp với link Colab).
+   - **Cửa sổ Terminal:** Mở sẵn terminal ở thư mục dự án `TDTT_RAG`, đã gõ sẵn lệnh `streamlit run app.py` (chỉ chờ nhấn Enter).
+   - **File Notepad:** Chứa sẵn 2 câu hỏi test để copy/paste nhanh:
+     - **Câu 1 (Trong cẩm nang):**
        ```text
        What is the adult admission ticket price for Independence Palace?
        ```
-     - **Câu 2 (Không có trong cẩm nang):**
+     - **Câu 2 (Ngoài cẩm nang):**
        ```text
        How much is the entrance ticket to Sun World Ba Na Hills?
        ```
+2. **Chuẩn bị tài khoản đăng nhập:**
+   - Đã có sẵn 1 tài khoản đã đăng ký trước (ví dụ: `test@example.com` / `123456`) để đăng nhập ngay mà không mất thời gian tạo mới.
+3. **Mẹo hiển thị:** Phóng to trình duyệt Streamlit lên **115% - 125%** (`Ctrl + +`) để chữ và điểm số hiển thị rõ nét trên video.
 
 ---
 
-## 2. Kịch bản chi tiết từng giây (0:00 - 1:30)
+## 2. Kịch bản chi tiết phần Demo (~1 phút 40 giây: 0:00 – 1:40)
 
-| Thời gian | Thao tác trên màn hình | Lời thoại thuyết minh (Script đọc) | Điểm số cần nhấn mạnh |
+| Thời gian | Cảnh & Thao tác trên màn hình | Lời thoại thuyết minh (Script đọc) | Ý nghĩa kỹ thuật |
 | :--- | :--- | :--- | :--- |
-| **0:00 - 0:15** | - Màn hình đang ở trang **Account Sign In**.<br>- Nhập email & mật khẩu.<br>- Bấm nút **Sign In**. | *"Xin chào thầy cô, đây là ứng dụng Lumen Travel Assistant cho TP.HCM. Đầu tiên, tính năng chat được bảo vệ hoàn toàn bằng Firebase Authentication. Người dùng bắt buộc phải đăng nhập thì mới vào được hệ thống. Em sẽ tiến hành đăng nhập bằng tài khoản email và mật khẩu."* | Cho thấy cơ chế chặn truy cập chưa đăng nhập. |
-| **0:15 - 0:45** | - Đăng nhập thành công, màn hình chuyển sang trang Chat.<br>- Thanh sidebar hiển thị Email và UID.<br>- Dán **Câu hỏi 1** vào ô chat $\rightarrow$ Nhấn Enter. | *"Sau khi đăng nhập thành công, phiên làm việc được lưu trong `st.session_state`. Bây giờ em sẽ hỏi một câu có trong cẩm nang du lịch: 'What is the adult admission ticket price for Independence Palace?' (Giá vé người lớn tham quan Dinh Độc Lập là bao nhiêu?)."* | Câu hỏi hợp lệ (Answerable query). |
-| **0:45 - 1:05** | - Câu trả lời hiện ra.<br>- Dùng chuột rê vào mã trích dẫn `[G01]`.<br>- Bấm mở mục **Retrieved Travel Guide References & Scores (Top-K)** để xem 3 mục và điểm cosine similarity. | *"Hệ thống đã nhúng câu hỏi bằng embeddinggemma, lấy ra top 3 mục liên quan nhất và mô hình qwen3:4b đã trả lời chính xác giá vé 40,000 VND có trích dẫn mã nguồn [G01]. Mở bảng tham chiếu, ta thấy mục Dinh Độc Lập [G01] đạt điểm Cosine Similarity cao nhất là hơn 0.7."* | Trích dẫn nguồn `[Gxx]`, điểm Cosine Similarity của Top-K. |
-| **1:05 - 1:20** | - Dán **Câu hỏi 2** vào ô chat $\rightarrow$ Nhấn Enter.<br>- Chờ câu trả lời hiện ra: *"I don't know this information as it is not currently covered in the Lumen Travel guide."* | *"Tiếp theo, em sẽ hỏi một câu về địa điểm không thuộc TP.HCM và không có trong cẩm nang: 'How much is the entrance ticket to Sun World Ba Na Hills?'. Trợ lý không hề tự bịa giá vé mà tuân thủ nghiêm ngặt quy tắc 'I don't know', từ chối trả lời do thông tin không nằm trong cẩm nang của Lumen Travel."* | Quy tắc chống ảo giác "I don't know". |
-| **1:20 - 1:35** | - Rê chuột sang thanh Sidebar bên trái.<br>- Nhấp vào nút **Sign Out**.<br>- Màn hình quay trở lại form đăng nhập. | *"Cuối cùng, em nhấn nút 'Sign Out' ở thanh bên. Hàm `forget_user()` ngay lập tức xóa sạch thông tin người dùng và lịch sử chat trong `session_state`, đảm bảo ứng dụng không lưu trữ trái phép dữ liệu vào cơ sở dữ liệu. Phần demo chức năng của em đến đây là hoàn thành."* | Xóa session, xóa chat history khi Sign Out. |
+| **0:00 - 0:10** | **Cảnh 1: Show Colab đang chạy**<br>- Màn hình quay tab Colab.<br>- Chuột lướt qua cell Ollama và cell Pinggy đang có link public. | *"Xin chào thầy cô, đây là bài tập lớn môn Tư duy tính toán. Đầu tiên, máy chủ Ollama chạy hai mô hình `embeddinggemma` và `qwen3:4b` đã được em khởi động sẵn trên Google Colab và mở đường hầm công khai qua Pinggy."* | Minh chứng dùng Ollama + Pinggy từ Lab 4. |
+| **0:10 - 0:18** | **Cảnh 2: Show file `.env`**<br>- Chuyển sang màn hình VS Code.<br>- Rê chuột vào dòng `OLLAMA_BASE_URL` trong file `.env`. | *"Đường link Pinggy này cùng các khóa Firebase API đã được em cấu hình an toàn trong file `.env` chứ không hardcode trong mã nguồn."* | Minh chứng lưu URL và key trong `.env`. |
+| **0:18 - 0:28** | **Cảnh 3: Gõ lệnh Streamlit**<br>- Chuyển sang Terminal.<br>- Nhấn Enter chạy lệnh `streamlit run app.py`.<br>- Trình duyệt tự mở trang web `localhost:8501`. | *"Bây giờ em tiến hành khởi chạy ứng dụng bằng lệnh `streamlit run app.py`."* | Minh chứng cách chạy ứng dụng đúng yêu cầu đề. |
+| **0:28 - 0:45** | **Cảnh 4: Đăng nhập Firebase**<br>- Trình duyệt ở trang **Account Sign In**.<br>- Nhập email & mật khẩu $\rightarrow$ Bấm nút **Sign In**.<br>- Vào giao diện Chat, sidebar hiện Email và UID. | *"Giao diện chat được bảo vệ hoàn toàn bởi Firebase Authentication, chưa đăng nhập thì không thể truy cập. Em tiến hành đăng nhập bằng tài khoản email. Sau khi đăng nhập thành công, phiên làm việc được lưu trong `st.session_state`."* | Minh chứng tính năng đăng nhập & bảo vệ route. |
+| **0:45 - 1:15** | **Cảnh 5: Hỏi câu trong cẩm nang (Answerable)**<br>- Dán **Câu hỏi 1** vào ô chat $\rightarrow$ Nhấn Enter.<br>- Câu trả lời hiện ra có trích dẫn `[G01]`.<br>- **Bấm mở thanh Expander** xem 3 mục Top-K và điểm Cosine. | *"Bây giờ em hỏi một câu có trong cẩm nang: 'What is the adult admission ticket price for Independence Palace?'. Hệ thống nhúng câu hỏi bằng `embeddinggemma`, tìm kiếm theo Cosine Similarity và mô hình `qwen3:4b` trả lời chính xác giá vé 40,000 VND có trích dẫn nguồn [G01]. Mở bảng tham chiếu Top-K, ta thấy mục Dinh Độc Lập [G01] đạt điểm cao nhất."* | Minh chứng RAG: Embed $\rightarrow$ Cosine $\rightarrow$ Top-K $\rightarrow$ Trích dẫn `[Gxx]`. |
+| **1:15 - 1:30** | **Cảnh 6: Hỏi câu ngoài cẩm nang ("I don't know")**<br>- Thu expander lại $\rightarrow$ Dán **Câu hỏi 2** $\rightarrow$ Enter.<br>- Chờ câu trả lời: *"I don't know this information as it is not currently covered in the Lumen Travel guide."* | *"Tiếp theo, em hỏi một câu ngoài cẩm nang TP.HCM: 'How much is the entrance ticket to Sun World Ba Na Hills?'. Trợ lý không hề bịa đặt giá vé mà tuân thủ nghiêm ngặt quy tắc 'I don't know', từ chối trả lời vì thông tin không có trong cẩm nang."* | Minh chứng cơ chế chống ảo giác "I don't know". |
+| **1:30 - 1:40** | **Cảnh 7: Đăng xuất (Sign out)**<br>- Rê chuột sang thanh Sidebar bên trái.<br>- Nhấp vào nút **Sign Out** $\rightarrow$ Màn hình quay về form đăng nhập. | *"Cuối cùng, em nhấn nút 'Sign Out'. Hàm `forget_user()` lập tức xóa sạch toàn bộ lịch sử trò chuyện và thông tin phiên trong `session_state`, đưa người dùng về lại màn hình đăng nhập. Phần demo tính năng của em đã hoàn thành."* | Minh chứng dọn dẹp sạch phiên và chat history. |
 
 ---
 
-## 3. Lời thoại liền mạch (Dành cho bạn luyện đọc trước khi quay)
+## 3. Lời thoại liền mạch phần Demo (Dành cho bạn luyện đọc)
 
-> *"Xin chào thầy cô, đây là ứng dụng Lumen Travel Assistant cho TP.HCM. Đầu tiên, tính năng chat được bảo vệ hoàn toàn bằng Firebase Authentication, người dùng bắt buộc phải đăng nhập thì mới có thể truy cập.*
+> *"Xin chào thầy cô, đây là bài thực hành số 3 môn Tư duy tính toán: Xây dựng trợ lý du lịch TP.HCM với RAG Chat.
 >
-> *(Thao tác: Bấm Sign In)*
+> *(Cảnh 1: Chiếu tab Colab)*  
+> *Đầu tiên, máy chủ Ollama chạy hai mô hình `embeddinggemma` và `qwen3:4b` đã được em khởi động sẵn trên Google Colab và mở đường hầm công khai thông qua Pinggy.*
 >
-> *Sau khi đăng nhập thành công, thông tin phiên được lưu an toàn trong `st.session_state`. Bây giờ, em sẽ hỏi câu đầu tiên có trong cẩm nang:*
+> *(Cảnh 2: Chiếu file `.env`)*  
+> *Đường link Pinggy này cùng các khóa Firebase API đã được em lưu trữ an toàn trong file `.env` chứ không hardcode trong mã nguồn.*
 >
-> *(Thao tác: Dán câu hỏi 1 và gửi)*
+> *(Cảnh 3: Gõ lệnh terminal)*  
+> *Bây giờ em khởi chạy ứng dụng bằng lệnh `streamlit run app.py`.*
 >
-> *Hệ thống nhúng câu hỏi qua mô hình `embeddinggemma`, tìm kiếm bằng độ đo Cosine Similarity và mô hình `qwen3:4b` trả lời chính xác giá vé 40,000 VND kèm trích dẫn mã [G01]. Mở bảng tham chiếu Top-K, ta thấy rõ các đoạn thông tin liên quan cùng điểm số tương đồng cụ thể.*
+> *(Cảnh 4: Màn hình Sign In $\rightarrow$ Đăng nhập)*  
+> *Giao diện chat được bảo vệ hoàn toàn bởi Firebase Authentication, người dùng bắt buộc phải đăng nhập thì mới có thể truy cập. Em tiến hành đăng nhập bằng tài khoản email. Sau khi đăng nhập thành công, phiên làm việc được lưu trong `st.session_state`.*
 >
-> *(Thao tác: Mở expander rồi thu lại, dán câu hỏi 2 và gửi)*
+> *(Cảnh 5: Dán câu hỏi 1 $\rightarrow$ Enter $\rightarrow$ Mở Expander)*  
+> *Bây giờ em sẽ hỏi một câu có trong cẩm nang du lịch: 'What is the adult admission ticket price for Independence Palace?'. Hệ thống nhúng câu hỏi qua mô hình `embeddinggemma`, tìm kiếm bằng độ đo Cosine Similarity và mô hình `qwen3:4b` trả lời chính xác giá vé 40,000 VND kèm trích dẫn mã nguồn [G01]. Mở bảng tham chiếu Top-K, ta thấy rõ các đoạn văn bản trích xuất kèm điểm số tương đồng cụ thể.*
 >
-> *Tiếp theo, em hỏi câu thứ hai về địa điểm không có trong cẩm nang: 'How much is the entrance ticket to Sun World Ba Na Hills?'. Nhờ cơ chế kiểm soát 2 tầng, trợ lý không hề bịa đặt mà trả lời chính xác câu mẫu: 'I don't know this information as it is not currently covered in the Lumen Travel guide.'*
+> *(Cảnh 6: Dán câu hỏi 2 $\rightarrow$ Enter)*  
+> *Tiếp theo, em hỏi câu thứ hai về địa điểm không có trong cẩm nang: 'How much is the entrance ticket to Sun World Ba Na Hills?'. Nhờ cơ chế kiểm soát 2 tầng, trợ lý không hề bịa đặt mà từ chối theo đúng quy tắc: 'I don't know this information as it is not currently covered in the Lumen Travel guide.'*
 >
-> *(Thao tác: Bấm nút Sign Out)*
->
-> *Cuối cùng, em bấm nút 'Sign Out'. Ứng dụng lập tức làm sạch toàn bộ lịch sử trò chuyện và phiên đăng nhập trong `st.session_state` mà không lưu vào Firestore, sau đó đưa người dùng quay lại màn hình đăng nhập. Phần demo của em đã hoàn tất."*
+> *(Cảnh 7: Bấm nút Sign Out)*  
+> *Cuối cùng, em bấm nút 'Sign Out' ở thanh bên. Ứng dụng lập tức làm sạch toàn bộ lịch sử trò chuyện và phiên đăng nhập trong `st.session_state` mà không lưu vào Firestore, sau đó đưa người dùng quay lại màn hình đăng nhập. Phần demo tính năng của em đã hoàn tất."*
 
 ---
 
-## 4. Những lỗi cần tránh khi quay phần Demo
+## 4. Những lưu ý quan trọng khi quay phần Demo
 
-1. **Nói quá dài vượt quá 1 phút 30 giây:**
-   - Tổng thời lượng cả video tối đa là 5 phút (nội dung sau 5:00 không được chấm). Hãy giữ phần demo khoảng **1:20 - 1:30** để dành 2.5 phút cho phần phân tích 4 bước Computational Thinking và 1 phút cho phần kết quả kiểm thử (Test Results).
-2. **Quên mở Expander nguồn trích dẫn:**
-   - Đề bài ghi rõ: *"show which guide entries it used... show the retrieved entries and their scores, e.g. in an expandable panel"*. Khi trả lời xong Câu 1, **bắt buộc phải nhấp mở expander** trong khoảng 3–5 giây để video ghi lại điểm số và trích dẫn.
-3. **Gõ chữ thủ công quá chậm:**
-   - Hãy dùng `Ctrl + C` và `Ctrl + V` từ Notepad vào ô chat để video mượt mà và tiết kiệm thời gian.
+1. **Thao tác lướt nhanh ở Cảnh 1 và Cảnh 2:** Chỉ cần lướt qua tab Colab (~8 giây) và file `.env` (~5 giây) để chứng minh kiến trúc Lab 4 và tính bảo mật, không cần dừng lại giải thích sâu để tránh mất thời gian.
+2. **Bắt buộc phải mở Expander nguồn trích dẫn:** Khi có kết quả câu hỏi 1, hãy mở expander trong khoảng 3–5 giây để video ghi lại điểm số Cosine và mã `[G01]`.
+3. **Dùng phím tắt:** Dùng `Alt + Tab` để chuyển màn hình giữa Colab $\rightarrow$ VS Code $\rightarrow$ Terminal $\rightarrow$ Trình duyệt một cách mượt mà và chuyên nghiệp.
 
 ---
 
@@ -192,8 +196,8 @@ Phần này bạn trình bày trên **Slide** hoặc cuộn màn hình chiếu t
 
 | Phần | Nội dung chính | Thời lượng chuẩn | Giới hạn mốc video |
 | :---: | :--- | :---: | :---: |
-| **Phần 1** | **Live Demo:** Đăng nhập $\rightarrow$ Hỏi 1 câu có trong cẩm nang (mở expander) $\rightarrow$ Hỏi 1 câu ngoài cẩm nang (show "I don't know") $\rightarrow$ Đăng xuất. | ~1 phút 30 giây | **0:00 – 1:30** |
-| **Phần 2** | **Computational Thinking:** Thuyết minh 4 bước Abstraction $\rightarrow$ Decomposition $\rightarrow$ Pattern Recognition $\rightarrow$ Algorithm Design (bám sát file README). | ~2 phút 30 giây | **1:30 – 4:00** |
+| **Phần 1** | **Live Demo:** Show Colab đang chạy $\rightarrow$ Show link Pinggy trong `.env` $\rightarrow$ Gõ `streamlit run app.py` $\rightarrow$ Đăng nhập $\rightarrow$ Hỏi câu trong cẩm nang (mở expander) $\rightarrow$ Hỏi câu ngoài cẩm nang (show "I don't know") $\rightarrow$ Đăng xuất. | ~1 phút 40 giây | **0:00 – 1:40** |
+| **Phần 2** | **Computational Thinking:** Thuyết minh 4 bước Abstraction $\rightarrow$ Decomposition $\rightarrow$ Pattern Recognition $\rightarrow$ Algorithm Design (bám sát file README). | ~2 phút 20 giây | **1:40 – 4:00** |
 | **Phần 3** | **Test Results:** Báo cáo 1 ca Pass (Câu 4 Paraphrase) và 1 ca Fail (Câu 7 Multi-entry) phân tích lỗi ở Retrieval Step do $K=3$. | ~1 phút 00 giây | **4:00 – 5:00** |
 | **TỔNG** | **Toàn bộ video (Tuyệt đối không để vượt quá 5 phút)** | **5 phút 00 giây** | **Tối đa 5:00** |
 
