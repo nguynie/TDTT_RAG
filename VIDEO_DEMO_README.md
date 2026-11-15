@@ -148,9 +148,12 @@ Phần này bạn trình bày trên **Slide** hoặc cuộn màn hình chiếu t
 * **Lời thoại:**
   > *"Sang phần Tư duy tính toán (Computational Thinking), bước đầu tiên là Abstraction.  
   > - **Input của hệ thống:** Câu hỏi tự nhiên từ người dùng đã đăng nhập.  
-  > - **Output:** Câu trả lời kèm mã trích dẫn [Gxx] và bảng tham chiếu Top-K kèm điểm Cosine Similarity.  
-  > - **Về dữ liệu:** Mỗi mục trong `knowledge_base.json` được tinh gọn gồm 6 trường: `id`, `title`, `category`, `tags`, `text` và `source`.  
-  > Em gộp `title`, `category`, `text`, `tags` để tạo vector ngữ nghĩa toàn diện. Riêng trường `id` được cố tình loại khỏi vector để tránh các ký tự vô nghĩa như G01 làm sai lệch khoảng cách ngữ nghĩa, mà chỉ đưa vào prompt để trích dẫn. Các chi tiết rườm rà như tọa độ GPS, hình ảnh hay review chủ quan được lược bỏ, chỉ giữ lại các thuộc tính cốt lõi dễ bị chatbot bịa đặt: địa chỉ, giờ mở cửa và giá vé cụ thể."*
+  > - **Output:** Câu trả lời có căn cứ trích dẫn mã [Gxx] và bảng điểm tương đồng Cosine Similarity.  
+  > - **Về cấu trúc dữ liệu cẩm nang (`knowledge_base.json`), em giữ lại đúng 6 trường vì các lý do sau:**  
+  >   1. Gộp `title`, `category`, `text`, và `tags` lại để nhúng thành vector ngữ nghĩa toàn diện nhất.  
+  >   2. Riêng trường `id` cố tình loại khỏi vector để tránh các ký tự như G01 làm nhiễu khoảng cách ngữ nghĩa, mà chỉ đưa vào prompt để LLM trích dẫn [Gxx].  
+  >   3. Trường `source` để minh bạch nguồn gốc tài liệu trên giao diện cho người dùng kiểm chứng.  
+  > Ngược lại, em lược bỏ các chi tiết rườm rà như tọa độ GPS, hình ảnh hay review chủ quan, chỉ giữ lại các thông tin cốt lõi hay bị chatbot bịa đặt: địa chỉ, giờ mở cửa và giá vé cụ thể."*
 
 ---
 
