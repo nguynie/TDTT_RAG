@@ -188,10 +188,10 @@ Phần này bạn trình bày trên **Slide** hoặc cuộn màn hình chiếu t
 * **Thao tác trên màn hình:** Chiếu đoạn mã giả (Pseudocode) và 2 ví dụ thực tế trong README.
 * **Lời thoại:**
   > *"Cuối cùng là Algorithm Design.  
-  > Quy trình trả lời câu hỏi được chuẩn hóa qua thuật toán `AnswerTravelQuery` với độ phức tạp tìm kiếm tuyến tính $O(N \cdot D)$.  
+  > Quy trình trả lời câu hỏi được chuẩn hóa qua thuật toán `AnswerTravelQuery` với độ phức tạp tìm kiếm là $O(N \cdot D)$, trong đó $N$ là 15 mục cẩm nang và $D$ là 768 chiều vector của mô hình `embeddinggemma`. Vì $N$ nhỏ nên bước tính tương đồng này diễn ra tức thì trong chưa đầy 5 mili-giây.  
   > Em đưa ra 2 quyết định thiết kế then chốt:  
   > 1. **Chọn $K = 3$:** Đủ ngữ cảnh mà không làm loãng prompt. Ví dụ ở câu hỏi về phố đi bộ Bùi Viện, $K = 3$ lấy được cả mục Bùi Viện [G11] và Nguyễn Huệ [G06], giúp mô hình phân biệt rõ giờ cấm xe của hai nơi mà không bị nhầm lẫn.  
-  > 2. **Quy tắc 'I don't know' 2 tầng:** Tầng 1 chặn bằng ngưỡng điểm 0.25. Tầng 2 kiểm soát bằng System Prompt và temperature thấp (0.1). Ví dụ khi hỏi về quán lẩu dê Trương Định, từ khóa ăn uống làm điểm vượt qua Tầng 1, nhưng khi vào Tầng 2, mô hình kiểm tra 3 đoạn trích xuất không thấy quán này nên từ chối trả lời chính xác, triệt tiêu hoàn toàn hiện tượng ảo giác."*
+  > 2. **Quy tắc 'I don't know' 2 tầng:** Tầng 1 chặn bằng ngưỡng điểm 0.25 để ngắt sớm các câu hỏi lạc đề, tiết kiệm GPU. Tầng 2 kiểm soát bằng System Prompt và temperature thấp (0.1). Ví dụ khi hỏi về quán lẩu dê Trương Định, từ khóa ăn uống làm điểm vượt qua Tầng 1, nhưng khi vào Tầng 2, mô hình kiểm tra 3 đoạn trích xuất không thấy quán này nên từ chối trả lời chính xác, triệt tiêu hoàn toàn hiện tượng ảo giác."*
 
 ---
 
