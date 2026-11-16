@@ -10,7 +10,8 @@ An intelligent travel assistant for **Ho Chi Minh City**, combining user authent
 - **Student Name:** Nguyen Ngoc Phuc Nguyen
 - **Student ID:** 25127434
 - **Selected City:** Ho Chi Minh City
-- **Demonstration Video:** [Your YouTube / Google Drive link]
+- **GitHub Repository:** [https://github.com/nguynie/TDTT_RAG](https://github.com/nguynie/TDTT_RAG)
+- **Demonstration Video:** [Google Drive Demonstration Video](https://drive.google.com/file/d/1UTkQSa_zonJVUJ-YsSwjGDLqscdBbxuh/view?usp=sharing)
 
 ---
 
